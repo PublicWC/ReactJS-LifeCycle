@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Content from './Content';
 
 class App extends Component {
+  constructor(props) {
+    console.log('Component constructor!');
+    super(props);
+
+    this.state = {
+      data: 0
+    }
+    this.setNewNumber = this.setNewNumber.bind(this)
+  };
+  setNewNumber() {
+    console.log('Update data!');
+    this.setState({ data: this.state.data + 1 })
+  }
   render() {
+    console.log('Component render!');
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <button onClick={this.setNewNumber}>INCREMENT</button>
+        <Content myNumber={this.state.data}></Content>
       </div>
     );
   }
